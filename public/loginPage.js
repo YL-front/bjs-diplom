@@ -8,7 +8,7 @@ User.loginFormCallback = (data) => {
             location.reload();
         }
         else {
-            User.loginErrorMessageBox(response.error);
+            User.setLoginErrorMessage(response.error);
         }
     });
 }
@@ -19,7 +19,7 @@ User.registerFormCallback = (data) => {
             location.reload();
         }
         else {
-            User.registerErrorMessageBox(response.error);
+            User.setRegisterErrorMessage(response.error);
         }
     });
 }

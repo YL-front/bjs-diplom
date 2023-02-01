@@ -1,4 +1,5 @@
 'use strict'
+//debagger;
 
 const logoutButton = new LogoutButton();
 
@@ -44,10 +45,10 @@ moneyManager.addMoneyCallback = (data) => {
     ApiConnector.addMoney(data, response => {
         if (response.success) {
             ProfileWidget.showProfile(response.data);
-            moneyManager.setMessage(response.success, 'успешно пополнено');
+            moneyManager.setMessage(response.success, 'успешное пополнение');
         }
         else {
-            moneyManager.setMessage(response.error, 'ошибка пополнения');
+            moneyManager.setMessage(response.errorMessageBlock, response.error);
         }
     });
 }
@@ -60,7 +61,7 @@ moneyManager.conversionMoneyCallback = (data) => {
             moneyManager.setMessage(response.success, 'успешная конвертация');
         }
         else {
-            moneyManager.setMessage(response.error, 'ошибка конвертации');
+            moneyManager.setMessage(response.errorMessageBlock, response.error);
         }
     })
 }
@@ -73,7 +74,7 @@ moneyManager.sendMoneyCallback = data => {
             moneyManager.setMessage(response.success, 'успешный перевод');
         }
         else {
-            moneyManager.setMessage(response.error, 'ошибка перевода');
+            moneyManager.setMessage(response.errorMessageBlock, response.error);
         }
     })
 }
@@ -99,7 +100,7 @@ favoritesWidget.addUserCallback = data => {
             moneyManager.updateUsersList(response.data);
         }
         else {
-            moneyManager.setMessage(response.error, 'ошибка добавления пользователя в список');
+            favoritesWidget.setMessage(response.errorMessageBlock, response.error);
         }
     })
 }
@@ -113,7 +114,7 @@ favoritesWidget.removeUserCallback = data => {
             moneyManager.updateUsersList(response.data);
         }
         else {
-            moneyManager.setMessage(response.error, 'ошибка удаления пользователя из списка');
+            favoritesWidget.setMessage(response.errorMessageBlock, response.error);
         }
     })
 } 
